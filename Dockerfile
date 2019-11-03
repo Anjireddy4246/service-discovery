@@ -11,10 +11,10 @@ VOLUME /user-service
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=build/libs/eureka-server-0.0.1-SNAPSHOT
+ARG JAR_FILE=build/libs/eureka-server-0.0.1-SNAPSHOT.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} discovery.jar
+ADD ${JAR_FILE} eureka-server.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/discovery.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.profiles.active=default", "/eureka-server.jar"]
